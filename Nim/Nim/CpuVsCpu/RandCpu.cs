@@ -7,7 +7,7 @@ using Nim.Players;
 
 namespace Nim.CpuVsCpu
 {
-    public class RandCpu: Player
+    public class RandCpu: Player, ComPlayer
     {
 
         public RandCpu(char[][] visual) : base(visual)
@@ -15,6 +15,11 @@ namespace Nim.CpuVsCpu
         }
 
         public override int[] ChooseMove()
+        {
+            return CreateRandomMove();
+        }
+
+        public int[] CreateRandomMove()
         {
             int[] move = new int[2];
 

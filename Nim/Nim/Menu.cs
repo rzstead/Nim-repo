@@ -35,10 +35,9 @@ namespace Nim
                     goodinput = true;
                 }
             }
-
             UseSelection(i);
-
         }
+
         public void UseSelection(int selection)
         {
             if (selection == 4)
@@ -62,40 +61,24 @@ namespace Nim
             }
 
 
-            int sleepCounter = 1000;
+            int sleepCounter;
 
-            switch (selection)
+            if (selection == 4)
             {
-                case 1:
-                    Console.WriteLine("Starting Player vs Player");
+                sleepCounter = 0;
+                Console.WriteLine("Starting Computer vs Smart Computer");
+                game.resetStats();
+                for (int i = 0; i < repeat; i++)
+                {
                     game.Start(selection, sleepCounter);
-                    break;
-                case 2:
-                    Console.WriteLine("Starting Player vs Computer");
-                    game.Start(selection, sleepCounter);
-                    break;
-                case 3:
-                    Console.WriteLine("Starting Computer vs Computer");
-                    game.Start(selection, sleepCounter);
-                    break;
-                case 4:
-                    sleepCounter = 0;
-                    Console.WriteLine("Starting Computer vs Smart Computer");
-                    game.resetStats();
-                    for (int i = 0; i < repeat; i++)
-                    {
-                        game.Start(selection, sleepCounter);
-                    }
-                    showStats(game.p1Count, game.p2Count);
-                    break;
-                case 5:
-                    Console.WriteLine("Player vs Smart Computer");
-                    game.Start(selection, sleepCounter);
-                    break;
-                default:
-                    Console.WriteLine("ERROR:Coder error bad selection");
-                    break;
+                }
+                showStats(game.p1Count, game.p2Count);
             }
+            else 
+            {
+                game.Start(selection);
+            }
+
             PlayAgain(selection);
         }
 

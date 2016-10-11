@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Nim.CpuVsCpu
 {
-    public class LearnCPU : Player
+    public class LearnCPU : Player, ComPlayer
     {
         public List<State> learnedMoves { get; private set; } = new List<State>();
 
@@ -117,7 +117,7 @@ namespace Nim.CpuVsCpu
             return move;
         }
 
-        private int[] CreateRandomMove()
+        public int[] CreateRandomMove()
         {
             int[] move = null;
 

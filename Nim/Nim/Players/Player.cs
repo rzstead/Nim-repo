@@ -8,10 +8,10 @@ namespace Nim.Players
 {
     public abstract class Player
     {
-        public char[][] board;
-        public int aBound = 4;
-        public int bBound = 6;
-        public int cBound = 8;
+        protected char[][] board;
+        protected int aBound = 4;
+        protected int bBound = 6;
+        protected int cBound = 8;
         private int rowUpBound = 0;
         private int rowDownBound = 3;
 
@@ -60,7 +60,7 @@ namespace Nim.Players
             }
         }
 
-        public int countRow(int row)
+        protected int countRow(int row)
         {
             int total = 0;
             foreach (char peg in board[row])

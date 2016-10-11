@@ -39,33 +39,38 @@ namespace Nim.CpuVsCpu
             switch (s)
             {
                 case 1:
+                    Console.WriteLine("Starting Player vs Player");
                     player1 = new UserPlayer(visual);
                     player2 = new UserPlayer(visual);
                     learningCPUOn = false;
                     break;
                 case 2:
+                    Console.WriteLine("Starting Player vs Computer");
                     player1 = new UserPlayer(visual);
                     player2 = new RandCpu(visual);
                     learningCPUOn = false;
                     break;
                 case 3:
+                    Console.WriteLine("Starting Computer vs Computer");
                     player1 = new RandCpu(visual);
                     player2 = new RandCpu(visual);
                     learningCPUOn = false;
                     break;
                 case 4:
+                    
                     player1 = new RandCpu(visual);
                     player2 = learningCPU;
                     learningCPUOn = true;
                     break;
                 case 5:
+                    Console.WriteLine("Player vs Smart Computer");
                     player1 = new UserPlayer(visual);
                     player2 = learningCPU;
                     learningCPUOn = true;
                     break;
             }
         }
-        public void Start(int selection, int sleepCounter)
+        public void Start(int selection, int sleepCounter = 1000)
         {
             isP1Turn = true;
             previousStates = new List<State>();
