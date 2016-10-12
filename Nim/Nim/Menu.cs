@@ -46,6 +46,7 @@ namespace Nim
 
             if (selection == 4)
             {
+                sleepCounter = 0;
                 bool goodinput = false;
                 while (!goodinput)
                 {
@@ -133,5 +134,5 @@ namespace Nim
             }
         }
     }
-}
+
 }
