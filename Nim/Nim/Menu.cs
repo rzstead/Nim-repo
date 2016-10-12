@@ -46,8 +46,8 @@ namespace Nim
 
             if (selection == 4)
             {
-                sleepCounter = 0;
                 bool goodinput = false;
+                sleepCounter = 0;
                 while (!goodinput)
                 {
                     Console.WriteLine("How many games do you want to play:");
