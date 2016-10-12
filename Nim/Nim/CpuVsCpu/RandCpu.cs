@@ -16,7 +16,7 @@ namespace Nim.CpuVsCpu
 
         public override int[] ChooseMove()
         {
-            int[] move = new int[2];
+            //int[] move = new int[2];
 
             Random randomGen = new Random();
 
@@ -39,7 +39,7 @@ namespace Nim.CpuVsCpu
                     break;
             }
 
-            move = new int[] { rowChoice, removeAmount };
+            int[] move = new int[] { rowChoice, removeAmount };
 
             return move;
         }

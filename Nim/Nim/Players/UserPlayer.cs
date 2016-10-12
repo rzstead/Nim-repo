@@ -16,22 +16,17 @@ namespace Nim.Players
         private int RowCharToInt(char r)//Changes between A,B,C to 0,1,2
         {
             int row = -1;
+            if(r > 90)
+            {
+                r = (char)(r - 32);
+            }
             switch (r)
             {
-                case 'A':
-                    row = 0;
-                    break;
                 case 'a':
                     row = 0;
                     break;
-                case 'B':
-                    row = 1;
-                    break;
                 case 'b':
                     row = 1;
-                    break;
-                case 'C':
-                    row = 2;
                     break;
                 case 'c':
                     row = 2;

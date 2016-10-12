@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Nim.Players;
+using System.Diagnostics;
 
 namespace Nim.CpuVsCpu
 {
@@ -94,7 +95,7 @@ namespace Nim.CpuVsCpu
                 RateMoves();
             }
 
-            if (p1IsWinner)
+            if (p1IsWinner) //c4p --Is a positive condition on top, checks the direct boolean itself, not p1isWinner == true, 
             {
                 Console.WriteLine("Player 1 is the winner");
                 p1Count++;
@@ -125,7 +126,6 @@ namespace Nim.CpuVsCpu
         public bool CheckGameOver()
         {
             int counter = 0;
-
             foreach (char[] row in visual)
             {
                 foreach (char peg in row)
@@ -136,15 +136,7 @@ namespace Nim.CpuVsCpu
                     }
                 }
             }
-
-            if (counter > 0)
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
+            return (!(counter > 0));
         }
 
         public void RateMoves()
@@ -155,13 +147,7 @@ namespace Nim.CpuVsCpu
             {
                 for (int i = totalMoves - 1; i > 0; i--)
                 {
-                    int mtplr = -1;
-
-                    if (i % 2 == 0)
-                    {
-                        mtplr = 1;
-                    }
-
+                    int mtplr = i % 2 == 0 ? 1 : -1;
                     previousStates[i].ValueOfWorth = ((i + 1) / (double)totalMoves) * mtplr;
                 }
             }
@@ -169,20 +155,16 @@ namespace Nim.CpuVsCpu
             {
                 for (int i = totalMoves - 1; i > 0; i--)
                 {
-                    int mtplr = -1;
-
-                    if (i % 2 != 0)
-                    {
-                        mtplr = 1;
-                    }
-
+                    int mtplr = i % 2 != 0 ? 1 : -1;
                     previousStates[i].ValueOfWorth = ((i + 1) / (double)totalMoves) * mtplr;
                 }
             }
 
+
             foreach (State temp in previousStates)
             {
                 ((LearnCPU)player2).AddMove(temp);
+                Debug.Assert(temp != null);
             }
         }
 
@@ -207,15 +189,7 @@ namespace Nim.CpuVsCpu
                     counter++;
                 }
             }
-
-            if (counter >= removeAmount && removeAmount >= 1)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return (counter >= removeAmount && removeAmount >= 1);
 
         }
 
@@ -224,85 +198,44 @@ namespace Nim.CpuVsCpu
         /// </summary>
         public void MakeMoves()
         {
-            if (isP1Turn)
+            Player player = isP1Turn ? player1 : player2;
+            int playerTurn = isP1Turn ? 1 : 2;
+
+            Console.WriteLine("Player " + playerTurn + "'s Turn");
+            bool isVaildMove = false;
+            int[] move = null;
+            do
             {
-                Console.WriteLine("Player 1 Turn");
-                bool isVaildMove = false;
-                int[] move = null;
-                do
-                {
-                    move = player1.ChooseMove();
-                    isVaildMove = CheckRow(move[0], move[1]);
-                }
-                while (!isVaildMove);
-
-                if (learningCPUOn)
-                {
-                    char[][] arrayCopy = CopyArray(visual);
-                    previousStates.Add(new State(move, 0, arrayCopy));
-                }
-
-                int numRemoved = 0;
-                int position = 0;
-                int row = move[0];
-                int removeAmount = move[1];
-                while (numRemoved != removeAmount)
-                {
-                    if (visual[row][position] == 'o')
-                    {
-                        visual[row][position] = 'x';
-                        numRemoved++;
-                        position++;
-                    }
-                    else
-                    {
-                        position++;
-                    }
-                }
-
-                Console.WriteLine("Player 1 removed " + removeAmount + " from row " + RowIntToChar(row) + ".");
-
+                move = player.ChooseMove();
+                isVaildMove = CheckRow(move[0], move[1]);
             }
-            else
+            while (!isVaildMove);
+
+            if (learningCPUOn)
             {
-                Console.WriteLine("Player 2 Turn");
-                bool isVaildMove = false;
-                int[] move = null;
-                do
-                {
-                    move = player2.ChooseMove();
-                    isVaildMove = CheckRow(move[0], move[1]);
-                }
-                while (!isVaildMove);
-
-                if (learningCPUOn)
-                {
-                    char[][] arrayCopy = CopyArray(visual);
-                    previousStates.Add(new State(move, 0, arrayCopy));
-                }
-
-                int numRemoved = 0;
-                int position = 0;
-                int row = move[0];
-                int removeAmount = move[1];
-                do
-                {
-                    if (visual[row][position] == 'o')
-                    {
-                        visual[row][position] = 'x';
-                        numRemoved++;
-                        position++;
-                    }
-                    else
-                    {
-                        position++;
-                    }
-                }
-                while (numRemoved != removeAmount);
-
-                Console.WriteLine("Player 2 removed " + removeAmount + " from row " + RowIntToChar(row) + ".");
+                char[][] arrayCopy = CopyArray(visual);
+                previousStates.Add(new State(move, 0, arrayCopy));
             }
 
+            int numRemoved = 0;
+            int position = 0;
+            int row = move[0];
+            int removeAmount = move[1];
+            while (numRemoved != removeAmount)
+            {
+                if (visual[row][position] == 'o')
+                {
+                    visual[row][position] = 'x';
+                    numRemoved++;
+                    position++;
+                }
+                else
+                {
+                    position++;
+                }
+            }
+
+            Console.WriteLine("Player " + playerTurn + " removed " + removeAmount + " from row " + RowIntToChar(row) + ".");
             isP1Turn = !isP1Turn;
         }
 

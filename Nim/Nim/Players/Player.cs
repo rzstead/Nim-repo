@@ -12,8 +12,6 @@ namespace Nim.Players
         public int aBound = 4;
         public int bBound = 6;
         public int cBound = 8;
-        private int rowUpBound = 0;
-        private int rowDownBound = 3;
 
         public Player(char[][] visual)
         {
