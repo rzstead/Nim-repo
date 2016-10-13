@@ -16,6 +16,11 @@ namespace Nim.CpuVsCpu
         {
         }
 
+        public void SortLearnedMoves()
+        {
+            learnedMoves.Sort(delegate (State s1, State s2) { return s1.ValueOfWorth.CompareTo(s2.ValueOfWorth); });
+        }
+
         public void AddMove(State state)
         {
             if (learnedMoves.Count() > 0)
@@ -24,7 +29,7 @@ namespace Nim.CpuVsCpu
                 State temp = null;
                 for (int i = 0; i < learnedMoves.Count(); i++)
                 {
-                    if (learnedMoves[i].StateOfBoard == state.StateOfBoard)
+                    if (learnedMoves[i].StateOfBoard.CompareBoards(state.StateOfBoard))
                     {
                         if (learnedMoves[i].MoveMade == state.MoveMade)
                         {
@@ -57,7 +62,7 @@ namespace Nim.CpuVsCpu
             foreach (State s in learnedMoves)
             {
                 bool isMatch = true;
-                char[][] temp = s.StateOfBoard;
+                char[][] temp = s.StateOfBoard.visual;
 
                 for (int i = 0; i < temp.Count(); i++)
                 {
@@ -115,6 +120,17 @@ namespace Nim.CpuVsCpu
             }
 
             return move;
+        }
+
+        public void PrintsKnowlege()
+        {
+            for (int i = 0; i < learnedMoves.Count; i++)
+            {
+
+                Console.WriteLine(learnedMoves[i].StateOfBoard.PrintBoard());
+                Console.WriteLine(learnedMoves[i].MoveMade[0] + " " + learnedMoves[i].MoveMade[1]);
+                Console.WriteLine(learnedMoves[i].ValueOfWorth);
+            }
         }
 
         private int[] CreateRandomMove()

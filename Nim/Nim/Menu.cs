@@ -44,7 +44,7 @@ namespace Nim
 
             int sleepCounter = 1000;
 
-            if (selection == 4)
+            if (selection == 4 || selection == 5)
             {
                 bool goodinput = false;
                 sleepCounter = 0;
@@ -65,7 +65,7 @@ namespace Nim
                 }
             }
             game.Start(selection, sleepCounter);
-            if (selection == 4)
+            if (selection == 4 || selection == 5)
             {
                 game.resetStats();
                 for (int i = 0; i < repeat; i++)

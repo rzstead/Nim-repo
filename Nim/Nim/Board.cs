@@ -22,12 +22,12 @@ namespace Nim
 
         public void InitDefaultBoard()
         {
-           visual = new char[3][]
-            {
+            visual = new char[3][]
+             {
                 new char[] {'o', 'o', 'o'},
                 new char[] {'o', 'o', 'o', 'o', 'o'},
                 new char[] {'o', 'o', 'o', 'o', 'o', 'o', 'o'}
-            };
+             };
         }
 
         public string PrintBoard()
@@ -47,21 +47,24 @@ namespace Nim
             return output;
         }
 
-        public string PrintBoard(char[][] board)
+        public bool CompareBoards(Board board)
         {
-            int rowLabel = 0;
-            string output = "";
-            for (int i = 0; i < 3; i++)
+            char[][] b1Visual = this.visual;
+            char[][] b2Visual = board.visual;
+            bool isSame = true;
+
+            for (int i = 0; i < b1Visual.Count(); i++)
             {
-                output += RowIntToChar(rowLabel) + " ";
-                rowLabel++;
-                for (int j = 0; j < board[i].Count(); j++)
+                for (int k = 0; k < b1Visual[i].Count(); k++)
                 {
-                    output += board[i][j];
+                    if (b1Visual[i][k] != b2Visual[i][k])
+                    {
+                        isSame = false;
+                    }
                 }
-                output += "\n";
             }
-            return output;
+
+            return isSame;
         }
 
         private char RowIntToChar(int r)//Changes between A,B,C to 0,1,2

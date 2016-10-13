@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Board.cs" />
     <Compile Include="CpuVsCpu\Game.cs" />
     <Compile Include="CpuVsCpu\LearnCPU.cs" />
     <Compile Include="CpuVsCpu\RandCpu.cs" />

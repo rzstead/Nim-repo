@@ -17,7 +17,8 @@ namespace Nim.CpuVsCpu
         };
         private Player player1;
         private Player player2;
-        private LearnCPU learningCPU;
+        private LearnCPU learningCPU1;
+        private LearnCPU learnignCPU2;
         private List<State> previousStates;
         public int p1Count { get; private set; }
         public int p2Count { get; private set; }
@@ -29,7 +30,8 @@ namespace Nim.CpuVsCpu
 
         public Game()
         {
-            learningCPU = new LearnCPU(visual);
+            learningCPU1 = new LearnCPU(visual);
+            learnignCPU2 = new LearnCPU(visual);
         }
 
         private void SetGameMode(int s)
@@ -50,11 +52,11 @@ namespace Nim.CpuVsCpu
                     break;
                 case 4:
                     player1 = new RandCpu(visual);
-                    player2 = learningCPU;
+                    player2 = learningCPU1;
                     break;
                 case 5:
-                    player1 = new UserPlayer(visual);
-                    player2 = learningCPU;
+                    player1 = learnignCPU2;
+                    player2 = learningCPU1;
                     break;
             }
         }
@@ -84,9 +86,12 @@ namespace Nim.CpuVsCpu
 
             bool p1IsWinner = isP1Turn;
 
+
             if (player2.GetType() == typeof(LearnCPU))
             {
                 RateMoves();
+                //((LearnCPU)player2).SortLearnedMoves();
+                ((LearnCPU)player2).PrintsKnowlege();
             }
 
             if (p1IsWinner)
@@ -203,7 +208,7 @@ namespace Nim.CpuVsCpu
                 }
             }
 
-            if (counter >= removeAmount && removeAmount >= 1)
+            if (counter >= removeAmount && removeAmount > 0)
             {
                 return true;
             }
@@ -232,6 +237,12 @@ namespace Nim.CpuVsCpu
                 previousStates.Add(new State(move, 0, arrayCopy));
             }
 
+            ChangeBoard(move, playerName);
+
+        }
+
+        public void ChangeBoard(int[] move, string playerName)
+        {
             int numRemoved = 0;
             int position = 0;
             int row = move[0];
@@ -251,7 +262,9 @@ namespace Nim.CpuVsCpu
             }
 
             Console.WriteLine(playerName + " removed " + removeAmount + " from row " + RowIntToChar(row) + ".");
+
         }
+
         /// <summary>
         /// Calls cpus to make their respective moves
         /// </summary>

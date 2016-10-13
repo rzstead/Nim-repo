@@ -13,7 +13,7 @@ namespace Nim.CpuVsCpu
     public class State
     {
         public double ValueOfWorth { get; set; }
-        public char[][] StateOfBoard { get; private set; }
+        public Board StateOfBoard { get; private set; }
         public int[] MoveMade { get; private set; }
 
         /// <summary>
@@ -25,7 +25,7 @@ namespace Nim.CpuVsCpu
         public State(int[] move, double worth, char[][] board)
         {
             MoveMade = move;
-            StateOfBoard = board;
+            StateOfBoard = new Board(board);
             ValueOfWorth = worth;
         }
     }
