@@ -243,3 +243,5 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
+Nim/NimTester/NimTests.cs
+Nim/Nim/Nim.csproj
