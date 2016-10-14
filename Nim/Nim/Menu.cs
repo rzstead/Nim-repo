@@ -40,6 +40,12 @@ namespace Nim
 
         public void UseSelection(int selection)
         {
+<<<<<<< HEAD
+=======
+
+            int sleepCounter = 1000;
+
+>>>>>>> parent of 50d5e61... Methods for printing and sorting
             if (selection == 4)
             {
                 bool goodinput = false;
@@ -59,10 +65,14 @@ namespace Nim
                     }
                 }
             }
+<<<<<<< HEAD
 
 
             int sleepCounter;
 
+=======
+            game.Start(selection, sleepCounter);
+>>>>>>> parent of 50d5e61... Methods for printing and sorting
             if (selection == 4)
             {
                 sleepCounter = 0;

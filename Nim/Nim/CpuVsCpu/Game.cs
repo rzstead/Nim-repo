@@ -17,6 +17,10 @@ namespace Nim.CpuVsCpu
         };
         private Player player1;
         private Player player2;
+<<<<<<< HEAD
+=======
+        private LearnCPU learningCPU;
+>>>>>>> parent of 50d5e61... Methods for printing and sorting
         private List<State> previousStates;
         private bool isP1Turn = true;
         private bool learningCPUOn = false;
@@ -60,6 +64,7 @@ namespace Nim.CpuVsCpu
                     
                     player1 = new RandCpu(visual);
                     player2 = learningCPU;
+<<<<<<< HEAD
                     learningCPUOn = true;
                     break;
                 case 5:
@@ -67,6 +72,12 @@ namespace Nim.CpuVsCpu
                     player1 = new UserPlayer(visual);
                     player2 = learningCPU;
                     learningCPUOn = true;
+=======
+                    break;
+                case 5:
+                    player1 = new UserPlayer(visual);
+                    player2 = learningCPU;
+>>>>>>> parent of 50d5e61... Methods for printing and sorting
                     break;
             }
         }
@@ -94,7 +105,11 @@ namespace Nim.CpuVsCpu
 
             bool p1IsWinner = isP1Turn;
 
+<<<<<<< HEAD
             if (learningCPUOn)
+=======
+            if (player2.GetType() == typeof(LearnCPU))
+>>>>>>> parent of 50d5e61... Methods for printing and sorting
             {
                 RateMoves();
             }
@@ -247,6 +262,7 @@ namespace Nim.CpuVsCpu
                     previousStates.Add(new State(move, 0, arrayCopy));
                 }
 
+<<<<<<< HEAD
                 int numRemoved = 0;
                 int position = 0;
                 int row = move[0];
@@ -269,6 +285,13 @@ namespace Nim.CpuVsCpu
 
             }
             else
+=======
+            int numRemoved = 0;
+            int position = 0;
+            int row = move[0];
+            int removeAmount = move[1];
+            while (numRemoved != removeAmount)
+>>>>>>> parent of 50d5e61... Methods for printing and sorting
             {
                 Console.WriteLine("Player 2 Turn");
                 bool isVaildMove = false;
@@ -285,6 +308,7 @@ namespace Nim.CpuVsCpu
                     char[][] arrayCopy = CopyArray(visual);
                     previousStates.Add(new State(move, 0, arrayCopy));
                 }
+<<<<<<< HEAD
 
                 int numRemoved = 0;
                 int position = 0;
@@ -306,6 +330,24 @@ namespace Nim.CpuVsCpu
                 while (numRemoved != removeAmount);
 
                 Console.WriteLine("Player 2 removed " + removeAmount + " from row " + RowIntToChar(row) + ".");
+=======
+            }
+
+            Console.WriteLine(playerName + " removed " + removeAmount + " from row " + RowIntToChar(row) + ".");
+        }
+        /// <summary>
+        /// Calls cpus to make their respective moves
+        /// </summary>
+        public void MakeMoves(bool isP1Turn)
+        {
+            if (isP1Turn)
+            {
+                PlayerTakeTurn("Player 1", player1);
+            }
+            else
+            {
+                PlayerTakeTurn("Player 2", player2);
+>>>>>>> parent of 50d5e61... Methods for printing and sorting
             }
 
             isP1Turn = !isP1Turn;
