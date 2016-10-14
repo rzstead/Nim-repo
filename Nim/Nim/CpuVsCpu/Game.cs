@@ -58,8 +58,8 @@ namespace Nim.CpuVsCpu
                     break;
                 case 4:
                     
-                    player1 = new RandCpu(visual);
-                    player2 = learningCPU;
+                    player1 = learningCPU; 
+                    player2 = new RandCpu(visual);
                     learningCPUOn = true;
                     break;
                 case 5:
@@ -187,7 +187,7 @@ namespace Nim.CpuVsCpu
 
             foreach (State temp in previousStates)
             {
-                ((LearnCPU)player2).AddMove(temp);
+                ((LearnCPU)player1).AddMove(temp);
             }
         }
 

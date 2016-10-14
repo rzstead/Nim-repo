@@ -151,7 +151,7 @@ namespace Nim.CpuVsCpu
         {
             for(int i = 0; i < learnedMoves.Count; i++)
             {
-                Console.WriteLine("Move " + i + ": ValueOfWorth = [" + learnedMoves[i].ValueOfWorth + "], Move = [" + learnedMoves[i].MoveMade.);
+                Console.WriteLine("Move " + i + ": ValueOfWorth = [" + learnedMoves[i].ValueOfWorth + "], Move = [" + learnedMoves[i].MoveMade[0] + ", " + learnedMoves[i].MoveMade[1] + "]");
             }
         }
     }
