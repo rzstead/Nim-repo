@@ -58,8 +58,8 @@ namespace Nim.CpuVsCpu
                     break;
                 case 4:
                     
-                    player1 = learningCPU; 
-                    player2 = new RandCpu(visual);
+                    player1 = new RandCpu(visual);
+                    player2 = learningCPU; 
                     learningCPUOn = true;
                     break;
                 case 5:
@@ -72,7 +72,8 @@ namespace Nim.CpuVsCpu
         }
         public void Start(int selection, int sleepCounter = 1000)
         {
-            isP1Turn = true;
+            Random rand = new Random();
+            isP1Turn = rand.Next(1) % 2 == 0;
             previousStates = new List<State>();
             SetGameMode(selection);
             Console.WriteLine(PrintBoard());
@@ -187,7 +188,7 @@ namespace Nim.CpuVsCpu
 
             foreach (State temp in previousStates)
             {
-                ((LearnCPU)player1).AddMove(temp);
+                ((LearnCPU)player2).AddMove(temp);
             }
         }
 
