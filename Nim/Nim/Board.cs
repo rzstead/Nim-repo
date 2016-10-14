@@ -25,19 +25,6 @@ namespace Nim
             visual = board;
         }
 
-<<<<<<< HEAD
-=======
-        public void InitDefaultBoard()
-        {
-           visual = new char[3][]
-            {
-                new char[] {'o', 'o', 'o'},
-                new char[] {'o', 'o', 'o', 'o', 'o'},
-                new char[] {'o', 'o', 'o', 'o', 'o', 'o', 'o'}
-            };
-        }
-
->>>>>>> parent of 50d5e61... Methods for printing and sorting
         public string PrintBoard()
         {
             int rowLabel = 0;

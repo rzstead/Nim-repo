@@ -117,11 +117,7 @@ namespace Nim.CpuVsCpu
             return move;
         }
 
-<<<<<<< HEAD
         public int[] CreateRandomMove()
-=======
-        private int[] CreateRandomMove()
->>>>>>> parent of 50d5e61... Methods for printing and sorting
         {
             int[] move = null;
 

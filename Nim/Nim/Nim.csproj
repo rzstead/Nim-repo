@@ -43,10 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
     <Compile Include="CpuVsCpu\ComPlayer.cs" />
-=======
->>>>>>> parent of 50d5e61... Methods for printing and sorting
     <Compile Include="CpuVsCpu\Game.cs" />
     <Compile Include="CpuVsCpu\LearnCPU.cs" />
     <Compile Include="CpuVsCpu\RandCpu.cs" />
