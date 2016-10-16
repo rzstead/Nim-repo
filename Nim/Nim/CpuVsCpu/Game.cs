@@ -57,7 +57,6 @@ namespace Nim.CpuVsCpu
                     learningCPUOn = false;
                     break;
                 case 4:
-                    
                     player1 = new RandCpu(visual);
                     player2 = learningCPU; 
                     learningCPUOn = true;
